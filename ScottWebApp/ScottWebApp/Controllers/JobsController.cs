@@ -18,7 +18,8 @@ namespace ScottWebApp.Controllers
         // GET: Jobs
         public ActionResult Index()
         {
-            return View(db.Jobs.ToList());
+            var jobs = db.Jobs.Include(j => j.Recruiter);
+            return View(jobs.ToList());
         }
 
         // GET: Jobs/Details/5
@@ -39,6 +40,7 @@ namespace ScottWebApp.Controllers
         // GET: Jobs/Create
         public ActionResult Create()
         {
+            ViewBag.RecruiterID = new SelectList(db.Recruiters, "RecruiterID", "Name");
             return View();
         }
 
@@ -47,7 +49,7 @@ namespace ScottWebApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "JobID,Recruiter,Title,Location,Salary,Description")] Job job)
+        public ActionResult Create([Bind(Include = "JobID,RecruiterID,RecruiterTel,RecruiterEmail,Title,Location,Salary,Description")] Job job)
         {
             if (ModelState.IsValid)
             {
@@ -56,6 +58,7 @@ namespace ScottWebApp.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.RecruiterID = new SelectList(db.Recruiters, "RecruiterID", "Name", job.RecruiterID);
             return View(job);
         }
 
@@ -71,6 +74,7 @@ namespace ScottWebApp.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.RecruiterID = new SelectList(db.Recruiters, "RecruiterID", "Name", job.RecruiterID);
             return View(job);
         }
 
@@ -79,7 +83,7 @@ namespace ScottWebApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "JobID,Recruiter,Title,Location,Salary,Description")] Job job)
+        public ActionResult Edit([Bind(Include = "JobID,RecruiterID,RecruiterTel,RecruiterEmail,Title,Location,Salary,Description")] Job job)
         {
             if (ModelState.IsValid)
             {
@@ -87,6 +91,7 @@ namespace ScottWebApp.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.RecruiterID = new SelectList(db.Recruiters, "RecruiterID", "Name", job.RecruiterID);
             return View(job);
         }
 

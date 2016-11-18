@@ -12,11 +12,27 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Recruiter)
+            @Html.DisplayNameFor(model => model.Recruiter.Name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Recruiter)
+            @Html.DisplayFor(model => model.Recruiter.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RecruiterTel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RecruiterTel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RecruiterEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RecruiterEmail)
         </dd>
 
         <dt>
