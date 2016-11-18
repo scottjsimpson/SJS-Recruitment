@@ -11,16 +11,17 @@ namespace AzureRecruit.Models
     {
         public int JobID { get; set; }
 
-        public int RecruiterID { get; set; }
-        public string RecruiterEmail { get; set; }
-        public int RecruiterTel { get; set; }        
-        public Recruiter Recruiter { get; set; }
+        public int RecruiterID { get; set; }     
+        public virtual Recruiter Recruiter { get; set; }
 
         [Required()]
         public string Title { get; set; }
 
         [Required()]
         public string Location { get; set; }
+
+       [DisplayName("Date posted")]
+        public string DatePosted { get; set; }
         
         public int Salary { get; set; }
 

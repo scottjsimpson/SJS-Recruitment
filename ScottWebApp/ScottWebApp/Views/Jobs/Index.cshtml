@@ -15,16 +15,13 @@
             @Html.DisplayNameFor(model => model.Recruiter.Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.RecruiterTel)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RecruiterEmail)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Title)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DatePosted)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Salary)
@@ -41,27 +38,30 @@
             @Html.DisplayFor(modelItem => item.Recruiter.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.RecruiterTel)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RecruiterEmail)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Title)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Location)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.DatePosted)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Salary)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
+            @Html.ActionLink("Details", "Details", new { id = item.JobID })
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.JobID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.JobID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.JobID })
+
+
+            @if (User.IsInRole("Admin"))
+            {
+                @Html.ActionLink("Edit", "Edit", new { id = item.JobID })
+                <span> | </span>
+                @Html.ActionLink("Delete", "Delete", new { id = item.JobID })
+            }
+
+
         </td>
     </tr>
 }

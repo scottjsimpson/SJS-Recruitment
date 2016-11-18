@@ -49,7 +49,7 @@ namespace ScottWebApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "JobID,RecruiterID,RecruiterTel,RecruiterEmail,Title,Location,Salary,Description")] Job job)
+        public ActionResult Create([Bind(Include = "JobID,RecruiterID,Title,Location,DatePosted,Salary,Description")] Job job)
         {
             if (ModelState.IsValid)
             {
@@ -83,7 +83,7 @@ namespace ScottWebApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "JobID,RecruiterID,RecruiterTel,RecruiterEmail,Title,Location,Salary,Description")] Job job)
+        public ActionResult Edit([Bind(Include = "JobID,RecruiterID,Title,Location,DatePosted,Salary,Description")] Job job)
         {
             if (ModelState.IsValid)
             {

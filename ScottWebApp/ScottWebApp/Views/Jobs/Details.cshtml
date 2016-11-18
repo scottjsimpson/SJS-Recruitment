@@ -19,22 +19,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.RecruiterTel)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.RecruiterTel)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.RecruiterEmail)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.RecruiterEmail)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.Title)
         </dt>
 
@@ -51,6 +35,14 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.DatePosted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DatePosted)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.Salary)
         </dt>
 
@@ -61,14 +53,14 @@
         <dt>
             @Html.DisplayNameFor(model => model.Description)
         </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
+        <dd />
     </dl>
+    @Html.Raw(Model.Description)
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.JobID }) |
+    @if (User.IsInRole("Admin"))
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.JobID }) |
+    }
     @Html.ActionLink("Back to List", "Index")
 </p>
